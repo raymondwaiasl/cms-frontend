@@ -1,0 +1,7 @@
+node_modules
+.env
+dist
+.gitignore
+*.dockerignore
+*.Dockerfile
+kubernetes

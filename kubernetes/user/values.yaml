@@ -1,0 +1,9 @@
+image:
+  registry: dctm232cr
+  name: user-app
+  tag: latest
+service:
+  type: LoadBalancer
+dns:
+  domainName: user-app.com
+  prefix: user-app

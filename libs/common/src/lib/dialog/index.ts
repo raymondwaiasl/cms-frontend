@@ -1,0 +1,11 @@
+export { default as DeleteDialog } from './DeleteDialog/DeleteDialog';
+export { default as InputDialog } from './InputDialog/InputDialog';
+export { default as RoleManagementDialog } from './RoleManagementDialog/RoleManagementDialog';
+export { default as SubscribeDialog } from './SubscribeDialog/SubscribeDialog';
+export { default as PermissionDialog } from './permissionDialog/permissionDialog';
+export { default as ReportDialog } from './ReportDialog/ReportDialog';
+export { default as RenditionDialog } from './RenditionDialog/NewRenditionDialog';
+export { default as AutoLinkDialog } from './AutoLinkDialog/AutoLinkDialog';
+export { default as PropertyColumnConfigDialog } from './PropertyColumnConfigDialog/PropertyColumnConfigDialog';
+export { default as PropertyColumnPermissionDialog } from './PropertyColumnConfigDialog/PropertyColumnPermissionDialog';
+export { default as TipsDialog } from './TipsDialog/TipsDialog';

@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+}
+:root {
+  iframe#webpack-dev-server-client-overlay {
+    display: none !important;
+  }
+}

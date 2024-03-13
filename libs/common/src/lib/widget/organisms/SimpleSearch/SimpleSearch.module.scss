@@ -1,0 +1,17 @@
+.selector:global(.MuiFormControl-root) {
+  margin-bottom: 24px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+
+  & button[type='submit'] {
+    margin: 16px 0;
+    width: 100px;
+  }
+}

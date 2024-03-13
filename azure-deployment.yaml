@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms-admin-deploy
+spec:
+  selector:
+    matchLabels:
+      app: cms-admin
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cms-admin
+    spec:
+      containers:
+        - name: cms-admin
+          image: dctm232cr.azurecr.io/cms-admin:test
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          imagePullPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms-user-deploy
+spec:
+  selector:
+    matchLabels:
+      app: cms-user
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cms-user
+    spec:
+      containers:
+        - name: cms-user
+          image: dctm232cr.azurecr.io/cms-user:test
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cms-admin-service
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: cms-admin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cms-user-service
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: cms-user
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: cms-admin
+  name: cms-admin-load-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    app: cms-admin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: cms-user
+  name: cms-user-load-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    app: cms-user
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms-backend-deploy
+spec:
+  selector:
+    matchLabels:
+      app: cms-backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cms-backend
+    spec:
+      containers:
+        - name: cms
+          image: dctm232cr.azurecr.io/cms-backend:test
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cms-backend-service
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: cms-backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cms-backend-load-service
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: cms-backend
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: cms-backend

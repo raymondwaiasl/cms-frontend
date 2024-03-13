@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}-deploy
+  namespace: {{ default "dev" .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.image.name }}
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.image.name }}
+    spec:
+      containers:
+        - image:  {{ .Values.image.registry }}.azurecr.io/{{ default "admin-app" .Values.image.name }}:{{ default "latest" .Values.image.tag }}
+          name: {{ .Values.image.name }}
+          # resources:
+          #   requests:
+          #     cpu: 100m
+          #     memory: 128Mi
+          #   limits:
+          #     cpu: 250m
+          #     memory: 256Mi
+          ports:
+            - containerPort: 80
+              name: http

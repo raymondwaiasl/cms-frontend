@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - 'develop/fix-uat'
+
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    name: Never gonna give you up
+    steps:
+      - run: |
+          echo "Never Gonna Give you up"
+          echo "Never Gonna let you down"
+          echo "Never Gonna run around and dessert you"

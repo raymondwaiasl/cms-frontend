@@ -1,0 +1,9 @@
+image:
+  registry: dctm232cr
+  name: admin-app
+  tag: latest
+service:
+  type: LoadBalancer
+dns:
+  domainName: admin-app.com
+  prefix: admin-app

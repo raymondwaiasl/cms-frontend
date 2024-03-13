@@ -1,0 +1,64 @@
+.form {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  margin: auto 1.5rem;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.input:global(.MuiInputBase-root) {
+  margin-bottom: 1rem;
+}
+.page {
+  background-color: rgba(128, 128, 128, 0.171);
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.checkbox {
+  margin-bottom: 1rem;
+}
+
+.alert {
+  position: absolute;
+  top: 1.5rem;
+}
+
+.div {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cpform {
+  width: 30%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  margin: auto 1.5rem;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.rsform {
+  width: 20%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  margin: auto 1.5rem;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

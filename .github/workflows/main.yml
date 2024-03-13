@@ -1,0 +1,57 @@
+name: Build Admin app Image
+on:
+  push:
+    branches:
+      - 'psd004-had-deploy'
+env:
+  APP_NAME: had-admin-app
+  RELEASE_NAME: had-admin
+  DEPLOY_NAMESPACE: dev
+  DNS_PREFIX: had-admin
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout to ${{github.ref_name}}'
+        uses: actions/checkout@v3
+
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: 'Build and push image'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          docker build --build-arg NX_API_URL=${{ secrets.HAD_API_URL }} --build-arg NX_API_URL_02=${{ secrets.CMS_API_URL_02 }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{env.DEPLOY_NAMESPACE}}-${{ github.sha }} -f admin.Dockerfile .
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.APP_NAME }}:${{env.DEPLOY_NAMESPACE}}-${{ github.sha }}
+
+      - name: Install Helm
+        uses: Azure/setup-helm@v1
+        with:
+          version: v3.3.1
+
+      - name: Set AKS context
+        id: set-context
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: '${{ secrets.RESOURCE_GROUP }}'
+          cluster-name: '${{ secrets.AKS_CLUSTER }}'
+
+      - name: Run Helm Deploy
+        run: |
+          helm upgrade \
+            --install \
+            --create-namespace \
+            --atomic \
+            --wait \
+            --namespace ${{env.DEPLOY_NAMESPACE}} \
+            ${{env.RELEASE_NAME}} \
+            ./kubernetes/admin \
+            --set image.name=${{ env.APP_NAME }} \
+            --set dns.prefix=${{ env.DNS_PREFIX }} \
+            --set image.tag=${{env.DEPLOY_NAMESPACE}}-${{ github.sha }}

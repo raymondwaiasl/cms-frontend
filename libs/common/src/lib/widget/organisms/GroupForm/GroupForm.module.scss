@@ -1,0 +1,10 @@
+.container {
+  height: 100%;
+  background-color: white;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 12px;
+}
+.mainButton:global(.MuiButtonBase-root) {
+  margin-bottom: 16px;
+}

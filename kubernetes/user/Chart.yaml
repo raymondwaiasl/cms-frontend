@@ -1,0 +1,4 @@
+apiVersion: v2
+name: had-user-app
+description: Chart for the had-user-app
+version: 0.1.0

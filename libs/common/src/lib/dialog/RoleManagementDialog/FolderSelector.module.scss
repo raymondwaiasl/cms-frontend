@@ -1,0 +1,40 @@
+.folderTree {
+  height: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.expandIcon {
+  margin-right: 5px;
+  z-index: 10; // 调整图标的大小
+}
+
+.folderContainer {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  &Name {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  &Icon {
+    margin-right: 5px;
+    z-index: 10;
+  }
+}
+
+.treeItem {
+  color: 'rgba(0, 0, 0, 1)';
+  align-items: 'center';
+}
+
+.itemIcon {
+  color: 'rgba(0, 0, 0, 1)';
+}

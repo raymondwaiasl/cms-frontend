@@ -1,0 +1,4 @@
+apiVersion: v2
+name: had-admin-app
+description: Chart for the had-admin-app
+version: 0.1.0

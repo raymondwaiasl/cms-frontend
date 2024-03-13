@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+}
+.mainContent,
+main {
+  flex-grow: 1;
+  padding: 0 16px 16px;
+  background: #f3f6f5;
+  overflow-y: hidden;
+}
