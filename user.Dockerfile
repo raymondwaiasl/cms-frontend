@@ -24,6 +24,10 @@ COPY --from=builder /app/builder/dist/apps/user ./
 
 COPY user.nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 80
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+RUN mkdir -p /var/cache/nginx/client_temp
+RUN mkdir -p /var/cache/nginx/proxy_temp
+RUN mkdir -p /var/cache/nginx/fastcgi_temp
+RUN mkdir -p /var/cache/nginx/uwsgi_temp
+RUN mkdir -p /var/cache/nginx/scgi_temp
+RUN chown -R nginx:nginx /var/cache/nginx/
+RUN chmod -R 755 /var/cache/nginx/
