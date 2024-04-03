@@ -1,8 +1,8 @@
 FROM node:18 AS builder
 
-ARG NX_API_URL="cmab-backend.t1cp-cmadashb-ns.svc.cluster.local:8080"
+ARG NX_API_URL="/api"
 
-ARG NX_API_URL_02="cmab-backend.t1cp-cmadashb-ns.svc.cluster.local:8080"
+ARG NX_API_URL_02="/api2"
 
 WORKDIR /app/builder
 
@@ -22,11 +22,7 @@ RUN rm -rf *
 
 COPY --from=builder /app/builder/dist/apps/user ./
 
-COPY nginx.conf /etc/nginx/nginx.conf
-
-RUN chown -R nginx:nginx /var/cache/nginx /etc/nginx/
-
-USER nginx
+COPY user.nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
