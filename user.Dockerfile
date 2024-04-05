@@ -31,6 +31,8 @@ RUN mkdir -p /var/cache/nginx/uwsgi_temp
 RUN mkdir -p /var/cache/nginx/scgi_temp
 RUN chown -R nginx:nginx /var/cache/nginx/
 RUN chmod -R 755 /var/cache/nginx/
+RUN chown -R nginx:nginx /var/run/
+RUN chmod -R 755 /var/run/
 
 EXPOSE 8081
 
