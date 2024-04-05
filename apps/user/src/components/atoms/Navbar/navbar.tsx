@@ -116,6 +116,7 @@ const Navbar = forwardRef<HTMLDivElement>((props, ref) => {
     sessionStorage.removeItem('userName');
     queryClient.clear();
     resetStore();
+    history.push('/login');
   };
 
   const handleCloseUserMenu = () => {

@@ -27,7 +27,7 @@ import { useResetRecoilState } from 'recoil';
 const Navbar = () => {
   const queryClient = useQueryClient();
   const { i18n, t } = useTranslation();
-  const { resetStore } = useWidget();
+  //const { resetStore } = useWidget();
   const { properties, setProperties } = useContext(UserContext);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
@@ -53,7 +53,7 @@ const Navbar = () => {
     localStorage.removeItem('token');
     sessionStorage.removeItem('token');
     queryClient.clear();
-    resetStore();
+    // resetStore();
   };
 
   const handleCloseUserMenu = () => {
