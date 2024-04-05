@@ -12,7 +12,7 @@
         "compiler": "babel",
         "outputPath": "dist/apps/user",
         "index": "apps/user/src/index.html",
-        "baseHref": "/",
+        "baseHref": "/user/",
         "main": "apps/user/src/main.tsx",
         "polyfills": "apps/user/src/polyfills.ts",
         "tsConfig": "apps/user/tsconfig.app.json",
