@@ -38,7 +38,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const BrowserRouter = () => {
   return (
-    <Router>
+    <Router basename="/admin">
       <Switch>
         <Route path={route.login} render={() => <LoginPage />} />
         <MainLayout>

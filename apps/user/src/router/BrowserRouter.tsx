@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-route
 
 const BrowserRouter = () => {
   return (
-    <Router>
+    <Router basename='/user'>
       <Switch>
         <Route exact path={['/', '/login']} render={() => <LoginPage />} />
         <Route exact path={['/forgot']} render={() => <ForgotPwdPage />} />
